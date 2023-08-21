@@ -11,6 +11,7 @@
   import Sync from 'svelte-material-icons/Sync.svelte';
   import Cog from 'svelte-material-icons/Cog.svelte';
   import Server from 'svelte-material-icons/Server.svelte';
+  import TagMultiple from 'svelte-material-icons/TagMultiple.svelte';
   import StatusBox from '$lib/components/shared-components/status-box.svelte';
   import { goto } from '$app/navigation';
   import { AppRoute } from '../../lib/constants';
@@ -32,6 +33,8 @@
         return 'Jobs';
       case AppRoute.ADMIN_STATS:
         return 'Server Stats';
+      case AppRoute.CUSTOM_TAGS:
+        return 'Custom Tags';
       default:
         return '';
     }
@@ -57,6 +60,12 @@
       logo={Cog}
       isSelected={data.routeId === AppRoute.ADMIN_SETTINGS}
       on:selected={() => goto(AppRoute.ADMIN_SETTINGS)}
+    />
+    <SideBarButton
+      title="Custom Tags"
+      logo={TagMultiple}
+      isSelected={data.routeId === AppRoute.ADMIN_CUSTOM_TAGS}
+      on:selected={() => goto(AppRoute.ADMIN_CUSTOM_TAGS)}
     />
     <SideBarButton
       title="Server Stats"
