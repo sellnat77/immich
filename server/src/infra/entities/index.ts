@@ -17,6 +17,7 @@ export * from './api-key.entity';
 export * from './asset-face.entity';
 export * from './asset.entity';
 export * from './audit.entity';
+export * from './custom-exif.entity';
 export * from './exif.entity';
 export * from './partner.entity';
 export * from './person.entity';

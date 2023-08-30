@@ -15,6 +15,7 @@ import {
 } from 'typeorm';
 import { AlbumEntity } from './album.entity';
 import { AssetFaceEntity } from './asset-face.entity';
+import { CustomExifEntity } from './custom-exif.entity';
 import { ExifEntity } from './exif.entity';
 import { SharedLinkEntity } from './shared-link.entity';
 import { SmartInfoEntity } from './smart-info.entity';
@@ -100,6 +101,9 @@ export class AssetEntity {
 
   @Column({ type: 'varchar', nullable: true })
   sidecarPath!: string | null;
+
+  @ManyToMany(() => CustomExifEntity, (customExifEntity) => customExifEntity.asset)
+  customExifInfo?: CustomExifEntity;
 
   @OneToOne(() => ExifEntity, (exifEntity) => exifEntity.asset)
   exifInfo?: ExifEntity;
