@@ -18,6 +18,12 @@ export class MachineLearningRepository implements IMachineLearningRepository {
   private async post<T>(url: string, input: TextModelInput | VisionModelInput, config: ModelConfig): Promise<T> {
     const formData = await this.getFormData(input, config);
     const res = await fetch(`${url}/predict`, { method: 'POST', body: formData });
+    if (res.status >= 400) {
+      throw new Error(
+        `Request ${config.modelType ? `for ${config.modelType.replace('-', ' ')} ` : ''}` +
+          `failed with status ${res.status}: ${res.statusText}`,
+      );
+    }
     return res.json();
   }
 
@@ -43,7 +49,10 @@ export class MachineLearningRepository implements IMachineLearningRepository {
 
   async getFormData(input: TextModelInput | VisionModelInput, config: ModelConfig): Promise<FormData> {
     const formData = new FormData();
-    const { modelName, modelType, ...options } = config;
+    const { enabled, modelName, modelType, ...options } = config;
+    if (!enabled) {
+      throw new Error(`${modelType} is not enabled`);
+    }
 
     formData.append('modelName', modelName);
     if (modelType) {

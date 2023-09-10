@@ -1,5 +1,7 @@
 import {
   AudioCodec,
+  CQMode,
+  Colorspace,
   SystemConfig,
   SystemConfigEntity,
   SystemConfigKey,
@@ -11,7 +13,7 @@ import {
 import { BadRequestException } from '@nestjs/common';
 import { newJobRepositoryMock, newSystemConfigRepositoryMock } from '@test';
 import { IJobRepository, JobName, QueueName } from '../job';
-import { defaults, SystemConfigValidator } from './system-config.core';
+import { SystemConfigValidator, defaults } from './system-config.core';
 import { ISystemConfigRepository } from './system-config.repository';
 import { SystemConfigService } from './system-config.service';
 
@@ -41,6 +43,12 @@ const updatedConfig = Object.freeze<SystemConfig>({
     targetResolution: '720',
     targetVideoCodec: VideoCodec.H264,
     maxBitrate: '0',
+    bframes: -1,
+    refs: 0,
+    gopSize: 0,
+    npl: 0,
+    temporalAQ: false,
+    cqMode: CQMode.AUTO,
     twoPass: false,
     transcode: TranscodePolicy.REQUIRED,
     accel: TranscodeHWAccel.DISABLED,
@@ -65,6 +73,10 @@ const updatedConfig = Object.freeze<SystemConfig>({
       maxDistance: 0.6,
     },
   },
+  map: {
+    enabled: true,
+    tileUrl: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  },
   oauth: {
     autoLaunch: true,
     autoRegister: true,
@@ -87,6 +99,8 @@ const updatedConfig = Object.freeze<SystemConfig>({
   thumbnail: {
     webpSize: 250,
     jpegSize: 1440,
+    quality: 80,
+    colorspace: Colorspace.P3,
   },
 });
 

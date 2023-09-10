@@ -239,6 +239,8 @@ class ApiClient {
           return CLIPConfig.fromJson(value);
         case 'CLIPMode':
           return CLIPModeTypeTransformer().decode(value);
+        case 'CQMode':
+          return CQModeTypeTransformer().decode(value);
         case 'ChangePasswordDto':
           return ChangePasswordDto.fromJson(value);
         case 'CheckDuplicateAssetDto':
@@ -251,6 +253,8 @@ class ApiClient {
           return CheckExistingAssetsResponseDto.fromJson(value);
         case 'ClassificationConfig':
           return ClassificationConfig.fromJson(value);
+        case 'Colorspace':
+          return ColorspaceTypeTransformer().decode(value);
         case 'CreateAlbumDto':
           return CreateAlbumDto.fromJson(value);
         case 'CreateProfileImageResponseDto':
@@ -307,6 +311,8 @@ class ApiClient {
           return MergePersonDto.fromJson(value);
         case 'ModelType':
           return ModelTypeTypeTransformer().decode(value);
+        case 'OAuthAuthorizeResponseDto':
+          return OAuthAuthorizeResponseDto.fromJson(value);
         case 'OAuthCallbackDto':
           return OAuthCallbackDto.fromJson(value);
         case 'OAuthConfigDto':
@@ -343,6 +349,8 @@ class ApiClient {
           return SearchFacetResponseDto.fromJson(value);
         case 'SearchResponseDto':
           return SearchResponseDto.fromJson(value);
+        case 'ServerConfigDto':
+          return ServerConfigDto.fromJson(value);
         case 'ServerFeaturesDto':
           return ServerFeaturesDto.fromJson(value);
         case 'ServerInfoResponseDto':
@@ -375,6 +383,8 @@ class ApiClient {
           return SystemConfigJobDto.fromJson(value);
         case 'SystemConfigMachineLearningDto':
           return SystemConfigMachineLearningDto.fromJson(value);
+        case 'SystemConfigMapDto':
+          return SystemConfigMapDto.fromJson(value);
         case 'SystemConfigOAuthDto':
           return SystemConfigOAuthDto.fromJson(value);
         case 'SystemConfigPasswordLoginDto':

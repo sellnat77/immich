@@ -21,6 +21,12 @@ export enum SystemConfigKey {
   FFMPEG_TARGET_AUDIO_CODEC = 'ffmpeg.targetAudioCodec',
   FFMPEG_TARGET_RESOLUTION = 'ffmpeg.targetResolution',
   FFMPEG_MAX_BITRATE = 'ffmpeg.maxBitrate',
+  FFMPEG_BFRAMES = 'ffmpeg.bframes',
+  FFMPEG_REFS = 'ffmpeg.refs',
+  FFMPEG_GOP_SIZE = 'ffmpeg.gopSize',
+  FFMPEG_NPL = 'ffmpeg.npl',
+  FFMPEG_TEMPORAL_AQ = 'ffmpeg.temporalAQ',
+  FFMPEG_CQ_MODE = 'ffmpeg.cqMode',
   FFMPEG_TWO_PASS = 'ffmpeg.twoPass',
   FFMPEG_TRANSCODE = 'ffmpeg.transcode',
   FFMPEG_ACCEL = 'ffmpeg.accel',
@@ -52,6 +58,9 @@ export enum SystemConfigKey {
   MACHINE_LEARNING_FACIAL_RECOGNITION_MIN_SCORE = 'machineLearning.facialRecognition.minScore',
   MACHINE_LEARNING_FACIAL_RECOGNITION_MAX_DISTANCE = 'machineLearning.facialRecognition.maxDistance',
 
+  MAP_ENABLED = 'map.enabled',
+  MAP_TILE_URL = 'map.tileUrl',
+
   OAUTH_ENABLED = 'oauth.enabled',
   OAUTH_ISSUER_URL = 'oauth.issuerUrl',
   OAUTH_CLIENT_ID = 'oauth.clientId',
@@ -70,6 +79,8 @@ export enum SystemConfigKey {
 
   THUMBNAIL_WEBP_SIZE = 'thumbnail.webpSize',
   THUMBNAIL_JPEG_SIZE = 'thumbnail.jpegSize',
+  THUMBNAIL_QUALITY = 'thumbnail.quality',
+  THUMBNAIL_COLORSPACE = 'thumbnail.colorspace',
 }
 
 export enum TranscodePolicy {
@@ -105,6 +116,17 @@ export enum ToneMapping {
   DISABLED = 'disabled',
 }
 
+export enum CQMode {
+  AUTO = 'auto',
+  CQP = 'cqp',
+  ICQ = 'icq',
+}
+
+export enum Colorspace {
+  SRGB = 'srgb',
+  P3 = 'p3',
+}
+
 export interface SystemConfig {
   ffmpeg: {
     crf: number;
@@ -114,6 +136,12 @@ export interface SystemConfig {
     targetAudioCodec: AudioCodec;
     targetResolution: string;
     maxBitrate: string;
+    bframes: number;
+    refs: number;
+    gopSize: number;
+    npl: number;
+    temporalAQ: boolean;
+    cqMode: CQMode;
     twoPass: boolean;
     transcode: TranscodePolicy;
     accel: TranscodeHWAccel;
@@ -139,6 +167,10 @@ export interface SystemConfig {
       maxDistance: number;
     };
   };
+  map: {
+    enabled: boolean;
+    tileUrl: string;
+  };
   oauth: {
     enabled: boolean;
     issuerUrl: string;
@@ -161,5 +193,7 @@ export interface SystemConfig {
   thumbnail: {
     webpSize: number;
     jpegSize: number;
+    quality: number;
+    colorspace: Colorspace;
   };
 }

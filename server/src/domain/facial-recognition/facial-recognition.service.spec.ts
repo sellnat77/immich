@@ -1,3 +1,4 @@
+import { Colorspace } from '@app/infra/entities';
 import {
   assetStub,
   faceStub,
@@ -115,7 +116,6 @@ describe(FacialRecognitionService.name, () => {
     personMock = newPersonRepositoryMock();
     searchMock = newSearchRepositoryMock();
     storageMock = newStorageRepositoryMock();
-    configMock = newSystemConfigRepositoryMock();
 
     mediaMock.crop.mockResolvedValue(croppedFace);
 
@@ -292,8 +292,11 @@ describe(FacialRecognitionService.name, () => {
       expect(mediaMock.resize).toHaveBeenCalledWith(croppedFace, 'upload/thumbs/user-id/person-1.jpeg', {
         format: 'jpeg',
         size: 250,
+        quality: 80,
+        colorspace: Colorspace.P3,
       });
       expect(personMock.update).toHaveBeenCalledWith({
+        faceAssetId: 'asset-1',
         id: 'person-1',
         thumbnailPath: 'upload/thumbs/user-id/person-1.jpeg',
       });
@@ -313,6 +316,8 @@ describe(FacialRecognitionService.name, () => {
       expect(mediaMock.resize).toHaveBeenCalledWith(croppedFace, 'upload/thumbs/user-id/person-1.jpeg', {
         format: 'jpeg',
         size: 250,
+        quality: 80,
+        colorspace: Colorspace.P3,
       });
     });
 
@@ -330,6 +335,8 @@ describe(FacialRecognitionService.name, () => {
       expect(mediaMock.resize).toHaveBeenCalledWith(croppedFace, 'upload/thumbs/user-id/person-1.jpeg', {
         format: 'jpeg',
         size: 250,
+        quality: 80,
+        colorspace: Colorspace.P3,
       });
     });
   });
