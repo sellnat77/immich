@@ -102,8 +102,9 @@ export class AssetEntity {
   @Column({ type: 'varchar', nullable: true })
   sidecarPath!: string | null;
 
-  @ManyToMany(() => CustomExifEntity, (customExifEntity) => customExifEntity.asset)
-  customExifInfo?: CustomExifEntity;
+  @ManyToMany(() => CustomExifEntity)
+  @JoinTable()
+  customTags?: CustomExifEntity[];
 
   @OneToOne(() => ExifEntity, (exifEntity) => exifEntity.asset)
   exifInfo?: ExifEntity;

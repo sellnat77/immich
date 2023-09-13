@@ -5,10 +5,6 @@ import { AssetEntity } from './asset.entity';
 
 @Entity('custom_exif')
 export class CustomExifEntity {
-  @ManyToMany(() => AssetEntity, (asset) => asset.customExifInfo)
-  @JoinTable()
-  asset?: AssetEntity;
-
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
